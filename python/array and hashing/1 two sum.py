@@ -1,8 +1,11 @@
-target = 6
-nums = [3,2,3]
+target = 7
+nums = [3,2,4,10,20]
 dict = {}
+
 for i in range(len(nums)):
-    difference = target-nums[i]
+    diff = target - nums[i]
+    
     if nums[i] in dict.keys():
-        print([dict[difference], i])
-    dict[difference] = i
+        print([i, dict[nums[i]]])
+
+    dict[diff] = i
