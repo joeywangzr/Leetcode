@@ -1,10 +1,13 @@
-strs = ["eat","tea","tan","ate","nat","bat"]
+import collections
+strs = ["cab","tin","pew","duh","may","ill","buy","bar","max","doc"]
+# strs = ["eat","tea","tan","ate","nat","bat"]
 
-solution = {}
-for string in strs:
-    anagram_dict = {}
-    for i in string:
-        anagram_dict[i] = anagram_dict.get(i,0) + 1
-    solution[tuple(anagram_dict)] = solution.get(tuple(anagram_dict), []).append(string)
-    print(tuple(anagram_dict))
+solution = collections.defaultdict(list)
+for i in strs:
+    key = [0]*26
+    for letter in i:
+        key[ord(letter)-ord("a")] += 1
+
+    solution[tuple(key)].append(i)
+
 print(solution.values())
