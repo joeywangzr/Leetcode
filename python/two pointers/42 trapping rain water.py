@@ -5,9 +5,8 @@ height = [0,1,0,2,1,0,1,3,2,1,2,1]
 # height = [0,7,1,4,6]
 # height = [9,2,9,3,2,2,1,4,8]
 # height = [2,8,5,5,6,1,7,4,5]
-height = [5,3,7,7]
-height = [6,4,2,0,3,2,0,3,1,4,5,3,2,7,5,3,0,1,2,1,3,4,6,8,1,3]
-
+# height = [5,3,7,7]
+# height = [6,4,2,0,3,2,0,3,1,4,5,3,2,7,5,3,0,1,2,1,3,4,6,8,1,3]
 
 if len(height) < 3:
     print(0)
@@ -69,3 +68,35 @@ while l < len(height) - 2:
     l = r
 
 print(collected)
+
+# better brute force:
+# for each element of water, get left max and right max. get the minimum height of both of these max values, and then subtract the minimum by the height at that point.
+# if negative or 0, add nothing. otherwise add that number
+
+# dp solution
+if len(height) < 3:
+    print(0)
+
+
+max_left = [0]
+max_right = [0]
+sol = 0
+
+max_left.append(max(height[0], height[1]))
+for i in range(2,len(height)):
+    max_left.append(max(max_left[i-1], height[i]))
+
+max_right.append(max(height[len(height)-1], height[len(height)-2]))
+for i in range(2,len(height)):
+    max_right.append(max(max_right[i-1], height[len(height)-i]))
+max_right.reverse()
+
+for i in range(1, len(height)):
+    minimum = min(max_left[i], max_right[i])
+    add = minimum - height[i]
+    if add <= 0:
+        continue
+    else:
+        sol += add
+
+print(sol)
