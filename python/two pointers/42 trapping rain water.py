@@ -69,14 +69,9 @@ while l < len(height) - 2:
 
 print(collected)
 
-# better brute force:
-# for each element of water, get left max and right max. get the minimum height of both of these max values, and then subtract the minimum by the height at that point.
-# if negative or 0, add nothing. otherwise add that number
-
 # dp solution
 if len(height) < 3:
     print(0)
-
 
 max_left = [0]
 max_right = [0]
@@ -100,3 +95,29 @@ for i in range(1, len(height)):
         sol += add
 
 print(sol)
+
+# dp alt (2 pointer)
+height = [0,1,0,2,1,0,1,3,2,1,2,1]
+l, r = 0, len(height)-1
+left_max, right_max = height[l], height[r]
+collected = 0
+
+while l < r:
+    # take lowest of left, right, blocks
+    # always move lowest because the highest determines
+    if left_max < right_max:
+        l += 1
+        left_max = max(left_max, height[l])
+        to_add = min(left_max, right_max) - height[l]
+        if to_add > 0:
+            collected += to_add
+        # collected += left_max - height[l]
+    else:
+        r -= 1
+        right_max = max(right_max, height[r])
+        to_add = min(left_max, right_max) - height[r]
+        if to_add > 0:
+            collected += to_add
+        # collected += right_max - height[r]
+        # the above line works because you only want to add a height if the value to the left or right is greater. we know the value on the left or right is the minimum already because of the comparison at the beginning of this loop. the value will only be added if the max value is greater, if the max value changes then it will be equal and will result in 0, so its ok.
+print(collected)
