@@ -17,6 +17,9 @@ l = 0
 for b in range(len(s1)):
     dict2[s2[b]] = dict2.get(s2[b],0) + 1
 
+if len(s1) == len(s2):
+    print(dict2 == dict1)
+
 while dict1 != dict2:
     dict2[s2[l]] -= 1
     if dict2[s2[l]] == 0:
