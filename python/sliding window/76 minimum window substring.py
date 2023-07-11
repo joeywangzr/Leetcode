@@ -1,3 +1,6 @@
+t = "ADOBECODEBANC"
+s = "ABC"
+
 if t == "":
     print("")
 
