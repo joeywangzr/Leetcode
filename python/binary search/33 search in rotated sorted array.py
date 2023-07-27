@@ -18,35 +18,36 @@ while l <= r:
             r = mid - 1
         else:
             l = mid + 1
+print(-1)
 
 # my shitty sol
-# l, r = 0, len(nums)-1
-# minimum = (nums[0],0)
-# # find min
-# while l <= r:
-#     mid = (l+r)//2
-#     if nums[mid] < minimum[0]:
-#         minimum = (nums[mid], mid)
-#     if nums[mid] > nums[r]:
-#         l = mid + 1
-#     else:
-#         r = mid - 1
-# if nums[mid] < minimum[0]:
-#     minimum = (nums[mid], mid)
+l, r = 0, len(nums)-1
+minimum = (nums[0],0)
+# find min
+while l <= r:
+    mid = (l+r)//2
+    if nums[mid] < minimum[0]:
+        minimum = (nums[mid], mid)
+    if nums[mid] > nums[r]:
+        l = mid + 1
+    else:
+        r = mid - 1
+if nums[mid] < minimum[0]:
+    minimum = (nums[mid], mid)
 
-# if target > nums[len(nums)-1]:
-#     l = 0
-#     r = minimum[1]-1
-# else:
-#     l = minimum[1]
-#     r = len(nums)-1
+if target > nums[len(nums)-1]:
+    l = 0
+    r = minimum[1]-1
+else:
+    l = minimum[1]
+    r = len(nums)-1
 
-# while l <= r:
-#     mid = (l+r)//2
-#     if nums[mid] == target:
-#         print(mid)
-#     elif target > nums[mid]:
-#         l = mid+1
-#     else:
-#         r = mid-1
-# print(-1)
+while l <= r:
+    mid = (l+r)//2
+    if nums[mid] == target:
+        print(mid)
+    elif target > nums[mid]:
+        l = mid+1
+    else:
+        r = mid-1
+print(-1)
